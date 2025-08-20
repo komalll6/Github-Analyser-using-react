@@ -4,6 +4,7 @@ function App() {
   const [username, setUsername] = useState("");
   const [searchedUsername, setSearchedUsername] = useState(""); // to trigger API call
   const [userData, setUserData] = useState(null);
+  const [repoData, setRepoData] = useState(null);
 
   
     useEffect(() =>{
@@ -12,6 +13,13 @@ function App() {
     .then((response) => response.json())
     .then((data) => setUserData(data));
   }, [searchedUsername]);
+
+    useEffect(() =>{
+      if(!username) return; // Prevent API call if no username is searched, early return
+      fetch(`https://api.github.com/users/${username}/repos`)
+      .then((response) => response.json())
+      .then((data) => setRepoData(data));
+    }, [username]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -36,18 +44,21 @@ function App() {
           <p style={{display:"flex", marginTop:"-75px", left:"585px", position:"absolute"}}>{userData.location}</p>
           <p style={{display:"flex", marginTop:"-55px", left:"585px", position:"absolute"}}>{userData.bio}</p>
 
-          <button style={{position:"absolute", bottom:"260px", left:"580px", width:"100px", height:"25px" }}>Follow</button>
+          <button style={{position:"absolute", bottom:"265px", left:"580px", width:"100px", height:"25px", cursor:"pointer", boxShadow:"0 2px 4px rgba(0,0,0,0.2)"}}>Follow</button>
           {/* <p style={{display:"flex"}}>User view type: {userData.user_view_type}</p> */}
-          <p style={{display:"flex", position:"absolute", top:"400px", left:"220px", marginTop:"10px", fontWeight:"bold",fontSize:"large"}}>FOLLOWING <span style={{color:"blue", display:"flex", position:"relative", top:"22px", right:"48px", fontSize:"x-large"}}><br/>{userData.following}</span></p>
-          <p style={{display:"flex", position:"absolute", top:"400px", left:"420px",marginTop:"10px", fontWeight:"bold",fontSize:"large"}}>FOLLOWERS <span style={{color:"blue", display:"flex", position:"relative", top:"22px", right:"48px", fontSize:"x-large"}}><br/>{userData.followers}</span></p>
-          <p style={{display:"flex", position:"absolute", top:"400px", left:"620px",marginTop:"10px", fontWeight:"bold",fontSize:"large"}}>PUBLIC_REPOS <span style={{color:"blue", display:"flex", position:"relative", top:"22px", right:"48px", fontSize:"x-large"}}><br/>{userData.public_repos}</span></p>
-          <p style={{display:"flex", position:"absolute", top:"400px", left:"820px",marginTop:"10px", fontWeight:"bold",fontSize:"large"}}>PUBLIC_GISTS <span style={{color:"blue", display:"flex", position:"relative", top:"22px", right:"48px", fontSize:"x-large"}}><br/>{userData.public_gists}</span></p>
+          <p style={{display:"flex", position:"absolute", top:"400px", left:"220px", marginTop:"-10px", fontWeight:"bold",fontSize:"large"}}>FOLLOWING <span style={{color:"blue", display:"flex", position:"relative", top:"22px", right:"48px", fontSize:"x-large"}}><br/>{userData.following}</span></p>
+          <p style={{display:"flex", position:"absolute", top:"400px", left:"420px",marginTop:"-10px", fontWeight:"bold",fontSize:"large"}}>FOLLOWERS <span style={{color:"blue", display:"flex", position:"relative", top:"22px", right:"48px", fontSize:"x-large"}}><br/>{userData.followers}</span></p>
+          <p style={{display:"flex", position:"absolute", top:"400px", left:"620px",marginTop:"-10px", fontWeight:"bold",fontSize:"large"}}>PUBLIC_REPOS <span style={{color:"blue", display:"flex", position:"relative", top:"22px", right:"48px", fontSize:"x-large"}}><br/>{userData.public_repos}</span></p>
+          <p style={{display:"flex", position:"absolute", top:"400px", left:"820px",marginTop:"-10px", fontWeight:"bold",fontSize:"large"}}>PUBLIC_GISTS <span style={{color:"blue", display:"flex", position:"relative", top:"22px", right:"48px", fontSize:"x-large"}}><br/>{userData.public_gists}</span></p>
           {/* <p>Received events URL: {userData.received_events_url}</p> */}
           {/* <p>Email: {userData.email}</p>
           <p>Website: {userData.website}</p> */}
         </div>
         <div>
-          <h1>Repositories</h1>
+          <h1 style={{marginTop:"105px"}}>Repositories</h1>
+         <div>
+          
+         </div>
         </div>
         </div>
       )}
