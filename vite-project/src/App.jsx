@@ -4,7 +4,7 @@ function App() {
   const [username, setUsername] = useState("");
   const [searchedUsername, setSearchedUsername] = useState(""); // to trigger API call
   const [userData, setUserData] = useState(null);
-  const [repoData, setRepoData] = useState(null);
+  const [repoData, setRepoData] = useState([]);
 
   
     useEffect(() =>{
@@ -14,12 +14,12 @@ function App() {
     .then((data) => setUserData(data));
   }, [searchedUsername]);
 
-    useEffect(() =>{
-      if(!username) return; // Prevent API call if no username is searched, early return
-      fetch(`https://api.github.com/users/${username}/repos`)
-      .then((response) => response.json())
-      .then((data) => setRepoData(data));
-    }, [username]);
+     useEffect(() =>{
+     if(!username) return;
+     fetch(`https://api.github.com/users/${username}/repos`)
+     .then(res => res.json())
+     .then(data => setRepoData(data));
+  }, [username]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -53,16 +53,32 @@ function App() {
           {/* <p>Received events URL: {userData.received_events_url}</p> */}
           {/* <p>Email: {userData.email}</p>
           <p>Website: {userData.website}</p> */}
+          <div>
+          <h1>Repositories <span>{repoData.length}</span></h1>
+          </div>
+            <div className="grid grid-cols-3 gap-4">
+        {repoData.map(repo => (
+          <div key={repo.id} className="p-4 border rounded-lg shadow-sm">
+            <a 
+              href={repo.html_url} 
+              target="_blank" 
+              rel="noreferrer" 
+              className="font-semibold text-blue-600"
+            >
+              {repo.name}
+            </a>
+            <p className="text-sm text-gray-600">{repo.language || "N/A"}</p>
+            <div className="flex gap-4 text-sm mt-2">
+              ⭐ {repo.stargazers_count} | 🍴 {repo.forks_count}
+            </div>
+          </div>
+        ))}
+      </div>
         </div>
-        <div>
-          <h1 style={{marginTop:"105px"}}>Repositories</h1>
-         <div>
-          
          </div>
-        </div>
-        </div>
       )}
-    </div>
+        </div>
   )
 }
+
 export default App;
