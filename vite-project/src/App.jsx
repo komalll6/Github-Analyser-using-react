@@ -54,19 +54,19 @@ function App() {
           {/* <p>Email: {userData.email}</p>
           <p>Website: {userData.website}</p> */}
           <div>
-          <h1>Repositories <span>{repoData.length}</span></h1>
+          <h1 style={{}}>Repositories <span>{[]}</span></h1>
           </div>
-            <div className="grid grid-cols-3 gap-4">
+            <div style={{ padding:"10px", display:"flex", flexWrap:"wrap", gap:"10px",}}>
         {repoData.map(repo => (
-          <div key={repo.id} className="p-4 border rounded-lg shadow-sm">
-            <a 
+          <div style={{flex:"1 1 300px", border:"1px solid #8b7676ff", borderRadius:"10px", padding:"10px", background:"#f5ecec82"}} key={repo.id}>
+            <a style={{fontSize:"large"}}
               href={repo.html_url} 
               target="_blank" 
               rel="noreferrer" 
-              className="font-semibold text-blue-600"
             >
               {repo.name}
             </a>
+            <p>{repo.description || "No description available"}</p>
             <p className="text-sm text-gray-600">{repo.language || "N/A"}</p>
             <div className="flex gap-4 text-sm mt-2">
               ⭐ {repo.stargazers_count} | 🍴 {repo.forks_count}
@@ -78,7 +78,7 @@ function App() {
          </div>
       )}
         </div>
-  )
+  );
 }
 
 export default App;
