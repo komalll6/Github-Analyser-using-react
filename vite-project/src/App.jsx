@@ -53,16 +53,14 @@ function App() {
           {/* <p>Received events URL: {userData.received_events_url}</p> */}
           {/* <p>Email: {userData.email}</p>
           <p>Website: {userData.website}</p> */}
-          <div>
-          <h1 style={{}}>Repositories <span>{[]}</span></h1>
-          </div>
-            <div style={{ padding:"10px", display:"flex", flexWrap:"wrap", gap:"10px",}}>
+          <h1 style={{paddingTop:"66px"}}>Repositories <span>{[]}</span> </h1>
+            <div style={{padding:"10px", display:"flex", flexWrap:"wrap", gap:"10px",}}>
         {repoData.map(repo => (
-          <div style={{flex:"1 1 300px", border:"1px solid #8b7676ff", borderRadius:"10px", padding:"10px", background:"#f5ecec82"}} key={repo.id}>
+          <div style={{flex:"1 1 300px", border:"1px solid #8b7676ff", borderRadius:"10px", padding:"10px", background:"#f5ecec82", top:"20px"}} key={repo.id}>
             <a style={{fontSize:"large"}}
               href={repo.html_url} 
               target="_blank" 
-              rel="noreferrer" 
+              rel="noreferrer"
             >
               {repo.name}
             </a>
