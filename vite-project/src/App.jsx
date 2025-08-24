@@ -41,15 +41,24 @@ function App() {
           <img src={userData.avatar_url} alt="github avatar" style={{width:"150px", borderRadius:"50%", marginRight:"250px"}}/>
           <h2 style={{display:"flex", marginTop:"-110px", left:"585px", position:"absolute"}}>{userData.name || userData.login}</h2>
           {/* <p style={{display:"flex", marginTop:"-65px", left:"580px", position:"absolute"}}>{userData.login}</p> */}
-          <p style={{display:"flex", marginTop:"-75px", left:"585px", position:"absolute"}}>{userData.location}</p>
-          <p style={{display:"flex", marginTop:"-55px", left:"585px", position:"absolute"}}>{userData.bio}</p>
+          <p style={{display:"flex", marginTop:"-75px", left:"585px", position:"absolute"}}>📍{userData.location}</p>
+          <p style={{display:"flex", marginTop:"-55px", left:"592px", position:"absolute"}}>{userData.bio}</p>
 
           <button style={{position:"absolute", bottom:"265px", left:"580px", width:"100px", height:"25px", cursor:"pointer", boxShadow:"0 2px 4px rgba(0,0,0,0.2)"}}>Follow</button>
           {/* <p style={{display:"flex"}}>User view type: {userData.user_view_type}</p> */}
-          <p style={{display:"flex", position:"absolute", top:"400px", left:"220px", marginTop:"-10px", fontWeight:"bold",fontSize:"large"}}>FOLLOWING <span style={{color:"blue", display:"flex", position:"relative", top:"22px", right:"48px", fontSize:"x-large"}}><br/>{userData.following}</span></p>
+          {/* <p style={{display:"flex", position:"absolute", top:"400px", left:"220px", marginTop:"-10px", fontWeight:"bold",fontSize:"large"}}>FOLLOWING <span style={{color:"blue", display:"flex", position:"relative", top:"22px", right:"48px", fontSize:"x-large"}}><br/>{userData.following}</span></p>
           <p style={{display:"flex", position:"absolute", top:"400px", left:"420px",marginTop:"-10px", fontWeight:"bold",fontSize:"large"}}>FOLLOWERS <span style={{color:"blue", display:"flex", position:"relative", top:"22px", right:"48px", fontSize:"x-large"}}><br/>{userData.followers}</span></p>
           <p style={{display:"flex", position:"absolute", top:"400px", left:"620px",marginTop:"-10px", fontWeight:"bold",fontSize:"large"}}>PUBLIC_REPOS <span style={{color:"blue", display:"flex", position:"relative", top:"22px", right:"48px", fontSize:"x-large"}}><br/>{userData.public_repos}</span></p>
-          <p style={{display:"flex", position:"absolute", top:"400px", left:"820px",marginTop:"-10px", fontWeight:"bold",fontSize:"large"}}>PUBLIC_GISTS <span style={{color:"blue", display:"flex", position:"relative", top:"22px", right:"48px", fontSize:"x-large"}}><br/>{userData.public_gists}</span></p>
+          <p style={{display:"flex", position:"absolute", top:"400px", left:"820px",marginTop:"-10px", fontWeight:"bold",fontSize:"large"}}>PUBLIC_GISTS <span style={{color:"blue", display:"flex", position:"relative", top:"22px", right:"48px", fontSize:"x-large"}}><br/>{userData.public_gists}</span></p> */}
+     
+        <div style={{display:"flex", justifyContent:"center", gap:"80px", position:"absolute", top:"380px", left:"220px", width:"800px", fontWeight:"bold", fontSize:"large"}}>
+          <p>FOLLOWING <br></br><span style={{color:"blue"}}>{userData.following}</span></p>
+          <p>FOLLOWERS <br></br><span style={{color:"blue"}}>{userData.followers}</span></p>
+          <p>PUBLIC_REPOS <br></br><span style={{color:"blue"}}>{userData.public_repos}</span></p>
+          <p>PUBLIC_GISTS <br></br><span style={{color:"blue"}}>{userData.public_gists}</span></p>
+        </div>
+
+
           {/* <p>Received events URL: {userData.received_events_url}</p> */}
           {/* <p>Email: {userData.email}</p>
           <p>Website: {userData.website}</p> */}
